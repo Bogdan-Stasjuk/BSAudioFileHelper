@@ -9,69 +9,66 @@
 
 #import <AudioToolbox/AudioFile.h>
 
-#import "BSMacros.h"
+#import <BSMacros/BSMacros.h>
 
 
 @implementation BSAudioFileHelper
 
-+ (NSError *)errorForOSStatus:(OSStatus)osStatus {
-    NSString *userInfo = BSEmptyString;
++ (NSString *)nameForOSStatus:(OSStatus)osStatus {
     switch (osStatus) {
         case kAudioFileUnspecifiedError:
-            userInfo = @"kAudioFileUnspecifiedError";
+            return @"kAudioFileUnspecifiedError";
             
         case kAudioFileUnsupportedFileTypeError: // 1954115647
-            userInfo = @"kAudioFileUnsupportedFileTypeError";
+            return @"kAudioFileUnsupportedFileTypeError";
             
         case kAudioFileUnsupportedDataFormatError:
-            userInfo = @"kAudioFileUnsupportedDataFormatError";
+            return @"kAudioFileUnsupportedDataFormatError";
             
         case kAudioFileUnsupportedPropertyError:
-            userInfo = @"kAudioFileUnsupportedPropertyError";
+            return @"kAudioFileUnsupportedPropertyError";
             
         case kAudioFileBadPropertySizeError:
-            userInfo = @"kAudioFileBadPropertySizeError";
+            return @"kAudioFileBadPropertySizeError";
             
         case kAudioFilePermissionsError:
-            userInfo = @"kAudioFilePermissionsError";
+            return @"kAudioFilePermissionsError";
             
         case kAudioFileNotOptimizedError:
-            userInfo = @"kAudioFileNotOptimizedError";
+            return @"kAudioFileNotOptimizedError";
             
         case kAudioFileInvalidChunkError:
-            userInfo = @"kAudioFileInvalidChunkError";
+            return @"kAudioFileInvalidChunkError";
             
         case kAudioFileDoesNotAllow64BitDataSizeError:
-            userInfo = @"kAudioFileDoesNotAllow64BitDataSizeError";
+            return @"kAudioFileDoesNotAllow64BitDataSizeError";
             
         case kAudioFileInvalidPacketOffsetError:
-            userInfo = @"kAudioFileInvalidPacketOffsetError";
+            return @"kAudioFileInvalidPacketOffsetError";
             
         case kAudioFileInvalidFileError: // 1685348671
-            userInfo = @"kAudioFileInvalidFileError";
+            return @"kAudioFileInvalidFileError";
             
         case kAudioFileOperationNotSupportedError:
-            userInfo = @"kAudioFileOperationNotSupportedError";
+            return @"kAudioFileOperationNotSupportedError";
             
         case kAudioFileNotOpenError:
-            userInfo = @"kAudioFileNotOpenError";
+            return @"kAudioFileNotOpenError";
             
         case kAudioFileEndOfFileError:
-            userInfo = @"kAudioFileEndOfFileError";
+            return @"kAudioFileEndOfFileError";
             
         case kAudioFilePositionError:
-            userInfo = @"kAudioFilePositionError";
+            return @"kAudioFilePositionError";
             
         case kAudioFileFileNotFoundError:
-            userInfo = @"kAudioFileFileNotFoundError";
+            return @"kAudioFileFileNotFoundError";
             
         default:
-            userInfo = @"unknown error";
+            BSLog(@"There is no name for OSStatus integer value '%i'", (int)osStatus);
+
+            return nil;
     }
-    
-    return [NSError errorWithDomain:@"com.stasiuk.bogdan.audiofilehelper" code:osStatus userInfo:@{
-                                                                                                   @"AudioFileError": userInfo,
-                                                                                                   }];
 }
 
 + (NSString *)nameForAudioFormatID:(AudioFormatID)audioFormatID {
@@ -150,7 +147,7 @@
             return @"kAudioFormatAES3";
 
         default:
-            BSLog(@"There is no AudioFormatID with integer value %i", audioFormatID);
+            BSLog(@"There is no for AudioFormatID integer value '%i'", (unsigned int)audioFormatID);
             return nil;
     }
 }
