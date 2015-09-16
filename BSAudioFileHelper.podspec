@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.requires_arc 	= true
   s.source_files 	= 'BSAudioFileHelper/*.{h,m}'
   s.public_header_files   	= 'BSAudioFileHelper/*.h'
+  s.dependency 'BSMacros'
 end
