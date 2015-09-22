@@ -71,6 +71,17 @@
     }
 }
 
++ (NSString *)nameForAVPlayerStatus:(AVPlayerStatus)status {
+    switch (status) {
+        case AVPlayerStatusFailed:
+            return @"AVPlayerStatusFailed";
+        case AVPlayerStatusReadyToPlay:
+            return @"AVPlayerStatusReadyToPlay";
+        case AVPlayerStatusUnknown:
+            return @"AVPlayerStatusUnknown";
+    }
+}
+
 + (NSString *)nameForAudioFormatID:(AudioFormatID)audioFormatID {
     switch (audioFormatID) {
         case kAudioFormatLinearPCM:

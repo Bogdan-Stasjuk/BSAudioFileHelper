@@ -6,12 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVPlayer.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
 
 @interface BSAudioFileHelper : NSObject
 
 + (NSString *)nameForOSStatus:(OSStatus)osStatus;
++ (NSString *)nameForAVPlayerStatus:(AVPlayerStatus)status;
 + (NSString *)nameForAudioFormatID:(AudioFormatID)audioFormatID;
 
 @end
